@@ -1,14 +1,22 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet  } from 'react-native'
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler'
+import firebase from "firebase"
 
 export default class LoginScreen extends React.Component {
+
+    state = {
+        email: "",
+        password: "",
+        errorMessage: null
+    }
+
     render() {
         return (
             <View style={styles.container}>
                 <Text style={styles.greeting}>{`Hello there\nWelcome`}</Text>
                 <View style={styles.errorMessage}>
-                    <Text>Error</Text>
+                    {this.state.errorMessage && <Text style={styles.error}>{this.state.errorMessage}</Text>}
                 </View>
 
                 <View style={styles.form}>
@@ -56,6 +64,12 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         marginHorizontal: 30
+    },
+    error: {
+        color: "#E9446A",
+        fontSize: 13,
+        fontWeight: "600",
+        textAlign: "center"
     },
     form: {
         marginBottom: 48,
