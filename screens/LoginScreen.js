@@ -9,6 +9,12 @@ export default class LoginScreen extends React.Component {
         email: "",
         password: "",
         errorMessage: null
+    };
+
+    handleLogin = () => {
+        const {email, password} = this.state
+
+        firebase.auth().signInWithEmailAndPassword(email, password).catch(error => this.setState({errorMessage: error.message}))
     }
 
     render() {
@@ -22,17 +28,17 @@ export default class LoginScreen extends React.Component {
                 <View style={styles.form}>
                     <View>
                         <Text style={styles.inputTitle}>Email Address</Text>
-                        <TextInput style={styles.input} autoCapatalize="none"></TextInput>
+                        <TextInput style={styles.input} autoCapatalize="none" onChangeText={email => this.setState({email})} value={this.state.email}></TextInput>
                     </View>
 
                     <View style={{ marginTop: 32 }}>
                         <Text style={styles.inputTitle}>Password</Text>
-                        <TextInput style={styles.input} autoCapatalize="none"></TextInput>
+                        <TextInput style={styles.input} secureTextEntry autoCapatalize="none" onChangeText={password => this.setState({password})} value={this.state.password}></TextInput>
                     </View>
 
                 </View>
 
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
                     <Text style={{ color: "#fff", fontWeight: 500}}>
                         Sign In
                     </Text>
