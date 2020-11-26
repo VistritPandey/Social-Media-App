@@ -1,21 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {createAppContainer, createSwitchNavigator} from 'react-navigation'
+import {createStackNavigator} from 'react-navigation-stack'
+import LoadingScreen from './screens/LoadingScreen'
+import LoginScreen from './screens/LoginScreen'
+import RegisterScreen from './screens/RegisterScreen'
+import HomeScreen from './screens/HomeScreen'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+import * as firebase from 'firebase'
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const firebaseConfig = {
+  apiKey: "AIzaSyDhwFSzkpCvfH0xKbu2IiXac9RDGpol48M",
+  authDomain: "vistrit-social-media.firebaseapp.com",
+  databaseURL: "https://vistrit-social-media.firebaseio.com",
+  projectId: "vistrit-social-media",
+  storageBucket: "vistrit-social-media.appspot.com",
+  messagingSenderId: "750769301154",
+  appId: "1:750769301154:web:20622c5d64581bf7ebd9fb",
+  measurementId: "G-PZFVCQVSXS"
+};
+
+firebase.initializeApp(firebaseConfig);
+
