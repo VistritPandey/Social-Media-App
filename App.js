@@ -5,7 +5,7 @@ import LoginScreen from './screens/LoginScreen'
 import RegisterScreen from './screens/RegisterScreen'
 import HomeScreen from './screens/HomeScreen'
 
-import * as firebase from 'firebase'
+import firebase from 'firebase'
 
 const firebaseConfig = {
   apiKey: "AIzaSyDhwFSzkpCvfH0xKbu2IiXac9RDGpol48M",
@@ -20,3 +20,24 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+const AppStack = createStackNavigator({
+  Home: HomeScreen
+});
+
+const AuthStack = createStackNavigator({
+  Login: LoginScreen,
+  Register: RegisterScreen
+});
+
+export default createAppContainer(
+  createSwitchNavigator(
+    {
+      Loading: LoadingScreen,
+      App: AppStack,
+      Auth: AuthStack
+    },
+    {
+      initialRouteName: "Loading"
+    }
+  )
+)
